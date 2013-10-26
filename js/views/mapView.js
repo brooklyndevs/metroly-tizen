@@ -132,10 +132,10 @@ define([
     initialize: function () {
       this.initMap();
       $(window).bind("resize", _.bind(this.ensureMapHeight, this));
-      this.model.onBusesChanged(this.showBuses, this);
       this.model.on('change:route', this.cacheRoute, this);
       this.model.on('change:direction', this.changeDirection, this);
-
+      this.model.on('getBuses', this.options.liveView.startSpin, this);
+      this.model.on('gotBuses', this.showBuses, this);
       this.initGeoLocate();
     },
 
@@ -219,6 +219,7 @@ define([
     },
 
     startBusTracking: function () {
+      var self = this;
       var settings = appState.getSettings();
       var time = parseInt(settings.find('check_interval')) || false;
       if (!time) {
@@ -228,7 +229,10 @@ define([
       if (!this.poll) {
         this.poll = new ShortPoll(time * 1000);
       }
-      var getBuses = _.bind(this.model.getBuses, this.model);
+
+      var getBuses = function () {
+        self.model.getBuses();
+      };
       this.poll.start(getBuses);
     },
 
@@ -238,7 +242,7 @@ define([
 
     changeDirection: function () {
       var direction = this.model.get('direction');
-
+      this.model.getBuses();
       this.map.removeLayer(CurrentRouteLayer);
       CurrentRouteLayer = RouteLayers['dir' + direction];
       this.map.addLayer(CurrentRouteLayer);
@@ -247,7 +251,7 @@ define([
     busLayer: new L.LayerGroup(),
 
     showBuses: function (buses) {
-      var i, bus, lat, lng, locatorIcon, marker, markerInfo, bearing, layer, busesLength = 0;
+      var self = this, i, bus, lat, lng, locatorIcon, marker, markerInfo, bearing, layer, busesLength = 0;
 
       if (buses) {
         busesLength = buses.length;
@@ -267,9 +271,13 @@ define([
         markerInfo = "<p><strong>" + bus.PublishedLineName + "</strong> &rarr; " + bus.DestinationName + "</p>";
         marker.bindPopup(markerInfo);
         this.busLayer.addLayer(marker);
+        self.busLayer.addTo(this.map);
       }
 
-      this.busLayer.addTo(this.map);
+      setTimeout(function () {
+        self.options.liveView.stopSpin();
+      }, 1000);
+
       this.startBusTracking();
     },
 

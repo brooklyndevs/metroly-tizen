@@ -42,11 +42,20 @@ define([
       this.render();
     },
 
+    startSpin: function () {
+      $('.imgState').addClass('spin360');
+    },
+
+    stopSpin: function () {
+      var targetEl = $('.imgState');
+      targetEl.removeClass('spin360');
+    },
+
     render: function () {
       var html, ctx = {};
 
       ctx.time = this.model.get('time');
-      
+
       html = this.template(ctx);
 
       this.$el.html(html);
