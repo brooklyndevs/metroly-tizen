@@ -36,8 +36,7 @@ define([
 
       this.model.on('change:bus', this.render, this);
       this.model.on('change:route', this.render, this);
-
-      this.dispatcher.bind("app:isHomeState", function (isHomeState) {
+      this.dispatcher.on("app:isHomeState", function (isHomeState) {
         if (isHomeState) self.renderHomeState();
       });
     },
@@ -53,7 +52,7 @@ define([
           e.target.style.backgroundPosition = "0 0px"
           pg.style.marginLeft = "";
         } else {
-          e.target.style.backgroundPosition = "0 -43px"
+          e.target.style.backgroundPosition = "0 -32px"
           pg.style.marginLeft = "200px";
         }
       });
