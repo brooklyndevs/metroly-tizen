@@ -42,6 +42,8 @@ table {
   border-spacing: 0;
 }
 
+/*/////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////*/
 /* -- Start Stylin' -- */
 html, body {
     overflow: hidden;
@@ -54,57 +56,79 @@ p, li, a ,input {
     line-height: 21px;
 }
 
+/*/////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////*/
+/* Header CSS */
 #header-wrapper {
     z-index: 2;
     color: #fff;
+    background: #006CB7;
 }
-
-#header-wrapper a {
-    color: #fff;
-    text-decoration: none;
-    display: block;
-}
-
-#route-wrapper{
-    background:#333;
-}
-
-#route-wrapper .route {
-    color: #888;
-    padding-bottom: 21px;
-    padding-top: 21px;
-}
-
-
-#route-wrapper .route:first-child {
-    /*-webkit-box-shadow: inset -1px 0 0 #313131;*/
-    background-image: url("../images/icon-route-left-selected.svg");
-    background-repeat: no-repeat;
-    background-position: left center;
-}
-
-#route-wrapper .route:last-child {
-    /*-webkit-box-shadow: inset 1px 0 0 #000000;*/
-    background-image: url("../images/icon-route-right.svg");
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-
-#route-wrapper .route:hover,
-#route-wrapper .route:active,
-#route-wrapper .route-selected {
-    background-color: #000000;
-    color: #fff;
-}
-
 #header-info {
     height: 60px;
-    /*background: #006CB7;*/
+    position: relative;
+}
+#header-info h1{
+    font-size: 32px;
+    font-weight: 500;
+    /*height: 32px;*/
+    line-height: 32px;
+    margin: 14px auto;
+    width: 100%;
+}
+
+/*/////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////*/
+/* Direction Nav CSS */
+#slider-direction{
+    background: #222222;
+    width: 100%;    
+    height:45px;
+}
+.route-name{
+    font-size: 12px;
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+    height:45px;
+}
+.dir-sprite{
+    width: 32px;
+    height: 32px;
+    margin-top:7px;
+    margin-bottom:7px;
+}
+.route-direction{
+    height:45px;
+}
+.route-direction:first-child .dir-sprite{
+    background-image: url("../images/icon-route-left-sprite.svg");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    float:left;
+    margin-left:15px;
+    margin-right:15px;
+}
+.route-direction:last-child .dir-sprite{
+    background-image: url("../images/icon-route-right-sprite.svg");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    float:right;
+    margin-left:15px;
+    margin-right:15px;
+}
+.route-selected{
+    background-position: center -32px !important;
+}
+
+/* HomeScreen CSS */
+#header-info {
+    height: 60px;
     position: relative;
 }
 
 #header-info h1{
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 500;
     /*height: 32px;*/
     line-height: 32px;
@@ -119,48 +143,50 @@ p, li, a ,input {
     right: 0;
     bottom: 0;
     height: auto;
-    /*opacity: 0.9;*/
     /*border: solid 2px #006CB7;*/
     background-color: #ededed;
     padding: 14px;
     display: none;
+    background-image: url('../images/icon-bus.svg');
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    opacity: .9;
 }
 
 #homeScreen.visible {
     display: block;
 }
 
+.homeScreen-help {
+    position: absolute;
+    padding-top: 110px;
+    background-image: url('../images/help-arrow.svg');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+p.header-text {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #222;
+}
+
+/*/////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////*/
+/* CSS Classes */
 .btn {
     display: block;
     width: auto;
     color: #ffffff;
 }
-
-#menu-btn,
-#fav-btn {
-    position: absolute;
-    top: 14px;
-    width: 32px;
-    height: 32px;
+.no-flick{
+    -webkit-perspective: 1000;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
 }
-
-#menu-btn {
-    left: 14px;
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-image: url("../images/icon-list-sprite.svg");
-}
-
-#fav-btn {
-    background-image: url("../images/icon-fav-sprite.svg");
-    background-repeat: no-repeat;
-    right: 14px;
-    background-position: 0 0;
-}
-
 .fav-active {
     background-position:0 -32px !important;
-    background-image: url("../images/icon-fav-sprite.svg") !important;
 }
 
 .page{
@@ -172,6 +198,8 @@ p, li, a ,input {
     left: 0;
     top: 0;
     width: 200px;
+    display:none;
+    -webkit-overflow-scrolling: touch;
 }
 
 .list-header{
@@ -193,6 +221,9 @@ p, li, a ,input {
    cursor: default;
 }
 
+/*/////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////*/
+/* Footer CSS */
 #liveContainer,
 #geoContainer {
     position: absolute;
@@ -217,7 +248,27 @@ p, li, a ,input {
     width:100%;
     text-decoration: none;
 }
+#menu-btn,
+#fav-btn {
+    position: absolute;
+    top: 14px;
+    width: 32px;
+    height: 32px;
+}
 
+#menu-btn {
+    left: 14px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: url("../images/icon-list-sprite.svg");
+}
+
+#fav-btn {
+    right: 14px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: url("../images/icon-fav-sprite.svg");
+}
 #liveContainer a:hover,
 #geoContainer a:hover{
     color:white;
@@ -232,16 +283,17 @@ p, li, a ,input {
 }
 
 #geo-btn {
-    background-position:0 0px;
+    background-position:0 5px;
 }
 
 .geo-active {
-    background-position:0 -40px !important;
+    background-position:0 -36px !important;
 }
 
 #live-btn {
     height: 40px;
     width: 160px;
+    position:relative;
 }
 
 .imgState {
@@ -273,8 +325,9 @@ p, li, a ,input {
     float: right;
 }
 
-
-/*BUBBLE CSS*/
+/*/////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////*/
+/* BUBBLE CSS */
 .live-bubble-header{
     background: black;
     color: white;
@@ -285,11 +338,13 @@ p, li, a ,input {
     width:160px;
     text-align: center;
     position: absolute;
-    bottom:50px;
-    display:none;
+    bottom:10px;
+    visibility:hidden;
+    -webkit-transition:all .2s;
 }
-.liveBubble ul li{
-    /*width: 150px;*/
+.liveBubble.shown {
+    visibility:visible;
+    bottom:50px;
 }
 .liveBubble ul li a{
     color:white;
@@ -310,6 +365,9 @@ p, li, a ,input {
     left:12px;
 }
 
+/*/////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////*/
+/* Animations CSS */
 .spin360 {
     -webkit-animation-name: spin;
     -webkit-animation-duration: 1.5s;
@@ -325,9 +383,4 @@ p, li, a ,input {
         -webkit-transform: rotate(360deg);
     }
 }
-/* Queries */
-@media (max-width: 500px) {
-/*    #route-wrapper .route {
-        min-height:40px;
-    }*/
-}
+

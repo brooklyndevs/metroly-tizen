@@ -8,7 +8,7 @@ Compiling
 To compile scripts using r.js:
 
 
-- ```chmod +x build/build.sh```
+- ```chmod +x app/build/build.sh```
 
 - ```r.js -o build/app.build.js```
 
