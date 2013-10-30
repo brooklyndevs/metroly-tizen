@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://metrolyapp.com" version="1.0.0" viewmodes="maximized">
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://metrolyapp.com" version="1.0.0" height="800" width="480" viewmodes="maximized">
     <access origin="*" subdomains="true"></access>
-    <tizen:application id="sQBPg8sSjJ.metroly" package="sQBPg8sSjJ" required_version="2.2"/>
+    <tizen:application id="sQBPg8sStg.metroly" package="sQBPg8sStg" required_version="2.0"/>
+    <author href="http://metrolyapp.com" email="eddflrs@gmail.com">Eddie Flores</author>
     <content src="index.html"/>
     <icon src="icon.png"/>
-    <name>metroly</name>
+    <name>Metroly</name>
     <tizen:privilege name="http://tizen.org/privilege/location"/>
     <tizen:privilege name="http://tizen.org/privilege/unlimitedstorage"/>
+    <tizen:privilege name="http://tizen.org/privilege/notification"/>
+    <tizen:setting screen-orientation="portrait" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
+    <feature name="http://tizen.org/feature/screen.size.normal.480.800"/>
+    <feature name="http://tizen.org/feature/screen.size.normal.720.1280"/>
 </widget>
